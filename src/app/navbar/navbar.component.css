@@ -1,0 +1,22 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  height: 70px;
+  background-color: bisque;
+}
+
+.navbar img {
+  height: 60px;
+  cursor: pointer;
+}
+
+.cart-button {
+  height: 40px;
+  width: 50px;
+  background-color: blue;
+  color: white; 
+  /* padding-top: 20px;
+  padding-left: 10px; */
+  padding: 20px 0 0 10px;
+  cursor: pointer;
+}
