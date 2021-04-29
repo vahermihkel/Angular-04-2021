@@ -1,1 +1,9 @@
-{{ items }}
+
+<div *ngIf="items.length == 0">ESEMEID EI OLE!</div>
+
+<div *ngFor="let item of items">
+    <img class="item-picture" src="{{ item.imgSrc }}">
+   <div class="item-title">{{ item.title }}</div> 
+   <div class="item-price"></div> {{ item.price }}
+   <button class="btn btn-danger" (click)="onAddToCart(item)">Lisa ostukorvi</button>
+</div>
