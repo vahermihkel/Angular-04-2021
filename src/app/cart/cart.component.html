@@ -1,1 +1,13 @@
-<p>cart works!</p>
+<div *ngIf="cartItems.length > 0" class="btn btn-danger"
+     (click)="onEmptyCart()">Tühjenda ostukorv</div>
+
+<div *ngIf="cartItems.length == 0">Ostukorv on tühi</div>
+
+<div *ngFor="let cartItem of cartItems; let i = index">
+   <img class="item-picture" src="{{ cartItem.imgSrc }}">
+   <div class="item-title">{{ cartItem.title }}</div> 
+   <div class="item-price">{{ cartItem.price + cartItem.price }}</div> 
+   <!-- STRING INTERPOLATION -->
+   <button (click)="onRemoveFromCart(i)">X</button>
+   <br><br>
+</div>
