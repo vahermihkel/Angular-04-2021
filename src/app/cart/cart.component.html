@@ -3,11 +3,29 @@
 
 <div *ngIf="cartItems.length == 0">Ostukorv on tühi</div>
 
+
 <div *ngFor="let cartItem of cartItems; let i = index">
    <img class="item-picture" src="{{ cartItem.imgSrc }}">
    <div class="item-title">{{ cartItem.title }}</div> 
-   <div class="item-price">{{ cartItem.price + cartItem.price }}</div> 
+   <div class="item-price">{{ cartItem.price }}</div> 
    <!-- STRING INTERPOLATION -->
    <button (click)="onRemoveFromCart(i)">X</button>
    <br><br>
 </div>
+
+<br><br>
+<div *ngIf="cartItems.length > 0">KOKKU: {{ sumOfCart }} €</div>
+
+<!-- EKSISTEERIVAD MUUTJAD: -->
+<!-- 1. muutujad mis on export class ALL -->
+<!-- 2. HTML-s tehtud uued muutujad "let" eesliidese abiga -->
+
+<!-- VASAKUL POOL ON ANGULARI OSA VÕI HTMLI OSA -->
+<!-- PAREMAL POOL VÕRDUSMÄRKI ON: -->
+<!-- muutuja .ts'i seest -->
+<!-- muutuja html seest (let eesliidese abil) -->
+<!-- css-i klass -->
+<!-- funktsioon .ts'i sees -->
+
+<!-- ei saa olla muutujaid mis pole ei .ts ega htmli seest -->
+<!-- ei saa olla funktsioone mis pole .ts seest -->

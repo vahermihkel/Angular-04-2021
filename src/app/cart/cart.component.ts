@@ -9,7 +9,8 @@ import { CartService } from './cart.service';
 export class CartComponent implements OnInit {
   // kooloniga annan tüüpi - objekti massiiv ehk {}[]
   // võrdusmärgiga annan väärtust ehk tühi massiiv alguses
-  cartItems: { title: string, price: string, imgSrc: string, category: string }[] = [];
+  cartItems: { title: string, price: number, imgSrc: string, category: string }[] = [];
+  sumOfCart = 0;
 
   // LÄHEB KÄIMA SIIS, KUI KOMPILEERITAKSE
   constructor(private cartService: CartService) { }
@@ -18,15 +19,30 @@ export class CartComponent implements OnInit {
   // LÄHEB KÄIMA SIIS, KUI KASUTAJA LÄHEB HTMLI PEALE
   ngOnInit(): void {
     this.cartItems = this.cartService.itemsInCart;
+    this.calculateSumOfCart();
   }
 
   onEmptyCart() {
     this.cartService.itemsInCart = [];
     this.cartItems = this.cartService.itemsInCart;
+    this.calculateSumOfCart();
   }
 
   onRemoveFromCart(i: number) {
     this.cartService.itemsInCart.splice(i, 1);
+    this.calculateSumOfCart();
+  }
+
+  calculateSumOfCart() {
+    this.sumOfCart = 0;
+    this.cartItems.forEach(cartItem => {
+      this.sumOfCart = this.sumOfCart + cartItem.price;
+    });
+    //[{ title: "..", price: 20 }, { title: "..", price: 30 }]
+    // cartItem = { title: "..", price: 20 }
+    //    20    = 0 + 20
+    // cartItem = { title: "..", price: 30 }
+    //    50    = 20 + 30
   }
 
 }
