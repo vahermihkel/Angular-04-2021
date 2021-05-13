@@ -4,7 +4,23 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CartService {
-  itemsInCart: { title: string, price: number, imgSrc: string, category: string }[] = [];
+  private itemsInCart: { title: string, price: number, imgSrc: string, category: string }[] = [];
 
   constructor() { }
+
+  addToCart(item: any) {
+    this.itemsInCart.push(item);
+  }
+
+  emptyCart() {
+    this.itemsInCart = [];
+  }
+
+  removeFromCart(i: number) {
+    this.itemsInCart.splice(i, 1);
+  }
+
+  getItemsInCart() {
+    return this.itemsInCart;
+  }
 }

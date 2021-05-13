@@ -1,8 +1,8 @@
 
 <div *ngIf="items.length == 0">ESEMEID EI OLE!</div>
 
-<div *ngFor="let item of items">
-    <img class="item-picture" src="{{ item.imgSrc }}">
+<div *ngFor="let item of items; let i = index">
+   <img class="item-picture" routerLink="toode/{{i}}" src="{{ item.imgSrc }}">
    <div class="item-title">{{ item.title }}</div> 
    <div class="item-price">{{ item.price }}</div> 
    <button class="btn btn-danger" (click)="onAddToCart(item)">Lisa ostukorvi</button>

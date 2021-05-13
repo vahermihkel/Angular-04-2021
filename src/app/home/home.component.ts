@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
   onAddToCart(item: any) {
     // this.items = [];
     // this.items.push(item);
-    this.cartService.itemsInCart.push(item);
+    this.cartService.addToCart(item);
   }
 
 }

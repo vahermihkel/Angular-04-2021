@@ -18,18 +18,18 @@ export class CartComponent implements OnInit {
 
   // LÄHEB KÄIMA SIIS, KUI KASUTAJA LÄHEB HTMLI PEALE
   ngOnInit(): void {
-    this.cartItems = this.cartService.itemsInCart;
+    this.cartItems = this.cartService.getItemsInCart();
     this.calculateSumOfCart();
   }
 
   onEmptyCart() {
-    this.cartService.itemsInCart = [];
-    this.cartItems = this.cartService.itemsInCart;
+    this.cartService.emptyCart();
+    this.cartItems = this.cartService.getItemsInCart();
     this.calculateSumOfCart();
   }
 
   onRemoveFromCart(i: number) {
-    this.cartService.itemsInCart.splice(i, 1);
+    this.cartService.removeFromCart(i);
     this.calculateSumOfCart();
   }
 
