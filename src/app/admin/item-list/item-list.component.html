@@ -4,5 +4,23 @@
     <div>{{ item.title }}</div>
     <div>{{ item.price }}</div>
     <button (click)="onDeleteItem(i)">X</button>
+    <button routerLink="/admin/muuda-ese/{{i}}">Muuda toodet</button>
     <br>
 </div>
+
+<!-- 
+    relatiivne teekond
+alates kohast kus sees ma olen
+
+routerLink="../muuda-ese"
+img src="../../assets/pilt.jpg"
+import from '../services/'
+
+    absoluutne teekond
+alates juurest (source'st)
+
+routerLink="/admin/muuda-ese"
+img src="assets/pilt.jpg"
+import 'from src/app/services/'
+
+-->

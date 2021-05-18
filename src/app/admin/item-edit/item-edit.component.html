@@ -1,1 +1,17 @@
-<button routerLink="/admin">MINE TAGASI</button>
+<button routerLink="/admin/esemete-list">MINE TAGASI</button>
+
+<br><br>
+                                        <!-- formGroup nõuab app.module sisse ReactiveFormsModule -->
+<form (ngSubmit)="onSubmit(editItemForm)" [formGroup]="editItemForm">
+    <label>Nimetus</label><br>
+                    <!-- ngModel name="title" -->
+    <input type="text" formControlName="title" placeholder="Sisesta nimetus" required><br>
+    <label>Hind</label><br>
+    <input type="number" formControlName="price" placeholder="Sisesta hind" required><br>
+    <label>Kategooria</label><br>
+    <input type="text" formControlName="category" pattern="^[a-zA-Z]+$" placeholder="Sisesta kategooria" required><br>
+    <label>Pilt</label><br>
+    <input type="text" size="70" formControlName="imgSrc" placeholder="Sisesta pildi aadress" required><br>
+    <button [disabled]="editItemForm.invalid" class="btn btn-success">SISESTA</button>
+    <!-- PROPERTY BINDING -->
+</form>
