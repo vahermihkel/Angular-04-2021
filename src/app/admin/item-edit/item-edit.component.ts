@@ -9,7 +9,6 @@ import { ItemService } from 'src/app/services/item.service';
   styleUrls: ['./item-edit.component.css']
 })
 export class ItemEditComponent implements OnInit {
-  item!: { title: string, imgSrc: string, price: number, category: string };
   editItemForm!: FormGroup;
   id: number = 0;
   // siin üleval on klassi muutujad 
@@ -29,13 +28,13 @@ export class ItemEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = Number(this.route.snapshot.paramMap.get("itemId"));
-    this.item = this.itemService.items[this.id];
+    let item = this.itemService.items[this.id];
 
     this.editItemForm = new FormGroup({
-      title: new FormControl(this.item.title),
-      price: new FormControl(this.item.price),
-      imgSrc: new FormControl(this.item.imgSrc),
-      category: new FormControl(this.item.category)
+      title: new FormControl(item.title),
+      price: new FormControl(item.price),
+      imgSrc: new FormControl(item.imgSrc),
+      category: new FormControl(item.category)
     })
   }
 

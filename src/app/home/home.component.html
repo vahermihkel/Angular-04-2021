@@ -1,10 +1,22 @@
+<!-- {{ kuupaev | date }} <br>
+{{ kuupaev | date:"fullDate" }} <br>
+{{ kuupaev | date:"shortDate" }} <br>
+{{ kuupaev | date:"mediumTime" }} <br>
+{{ kuupaev | date:"shortTime" }} <br>
+
+{{ arv | percent }} <br>
+{{ suurarv | percent }} <br>
+
+{{ arv | currency }} <br>
+{{ suurarv | currency }} <br> -->
+
 
 <div *ngIf="items.length == 0">ESEMEID EI OLE!</div>
 
 <div *ngFor="let item of items; let i = index">
    <img class="item-picture" routerLink="toode/{{i}}" src="{{ item.imgSrc }}">
-   <div class="item-title">{{ item.title }}</div> 
-   <div class="item-price">{{ item.price }}</div> 
+   <div class="item-title">{{ item.title | shortenTitle }}</div> 
+   <div class="item-price">{{ item.price | itemPrice }}</div> 
    <button class="btn btn-danger" (click)="onAddToCart(item)">Lisa ostukorvi</button>
    <!-- (sündmus)  event binding -- sündmuse sidumine  -->
 </div>
