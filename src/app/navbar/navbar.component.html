@@ -3,7 +3,7 @@
   <button routerLink="admin">{{'ADMIN LEHELE' | translate}}</button>
   <button (click)="useLanguage('en')">en</button>
   <button (click)="useLanguage('ee')">ee</button>
-  <div class="cart-button" routerLink="ostukorv">0.00€</div>
+  <div class="cart-button" routerLink="ostukorv">{{ sumOfCart | itemPrice }}</div>
 </div>
 
 <!-- TUMESINISED ON TÄÄGID -->

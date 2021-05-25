@@ -6,12 +6,13 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class ItemPricePipe implements PipeTransform {
 
   transform(value: number): string {
-    return value.toLocaleString('ee',
+    return value.toLocaleString('fi',
       {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2
       }
-    );
+    ).replace(',', '.') + ' €';
   }
 
+  // objekt { min: 2, max: 2 }
 }
