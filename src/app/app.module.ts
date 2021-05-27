@@ -5,6 +5,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,7 +20,7 @@ import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 import { ViewComponent } from './home/view/view.component';
 import { ItemPricePipe } from './pipes/item-price.pipe';
 import { ShortenTitlePipe } from './pipes/shorten-title.pipe';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CarouselSettingsComponent } from './admin/carousel-settings/carousel-settings.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AdminHomeComponent,
     ViewComponent,
     ItemPricePipe,
-    ShortenTitlePipe
+    ShortenTitlePipe,
+    CarouselSettingsComponent
   ],
   imports: [
     BrowserModule,

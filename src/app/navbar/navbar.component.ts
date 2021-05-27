@@ -16,12 +16,27 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     console.log("ngOnInit navbaris läks käima");
 
+    // ngOnInit läheb ainult ühe korra käima (vt console.log tulemist)
     this.cartService.cartChanged.subscribe(() => {
 
       this.sumOfCart = 0;
       this.cartService.getItemsInCart().forEach(cartItem => {
         this.sumOfCart = this.sumOfCart + cartItem.price;
       });
+
+      // uuendada saamiseks peab minema funktsioon käima, mis uuesti arvutaks
+      // ostukorvi kogusummma
+
+      // ülalolev funktsioon peab minema siin componendis käima
+      // aga peab käima minema vajutades nuppu teises componendis
+      // (click) - htmls         funktsioon() - .ts
+
+      // seda võimaldab Subject
+      // Subject peab olema Service-i sees ehk Subject peab ühendama kahte componenti
+
+      // Subjecti kasutamiseks esmalt ühendama Componendi Service'ga
+      // seejärel Componendi sees Service kaudu Subjecti käimapanek (subscribe) 
+      // ja sisend (next)
 
     })
   }
