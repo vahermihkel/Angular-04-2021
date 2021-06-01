@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselService } from '../admin/carousel-settings/carousel.service';
 import { CartService } from '../cart/cart.service';
+import { CarouselImage } from '../models/carousel-image.model';
 import { Item } from '../models/item.model';
 import { ItemService } from '../services/item.service';
 
@@ -25,7 +26,7 @@ export class HomeComponent implements OnInit {
   // headers = ["dasda", "nr 2-e pealkiri", "", "", "", ""]
   // alts = ["dasda", "nr 2-e pealkiri", "", "", "", ""]
 
-  images: any[] = [];
+  images: CarouselImage[] = [];
 
   // pean tõstma images välja Service-sse juhtudel, kus kasutan seda teises Componendis
   // 1. lisan pilte
@@ -56,10 +57,10 @@ export class HomeComponent implements OnInit {
     // ngOnInit() käima
     this.images = this.carouselService.images;
     this.items = this.itemService.items;
-    this.config.interval = 10000;
-    this.config.wrap = true;
-    this.config.keyboard = true;
-    this.config.pauseOnHover = true;
+    this.config.interval = this.carouselService.carouselSettings.interval;
+    this.config.wrap = this.carouselService.carouselSettings.wrap;
+    this.config.keyboard = this.carouselService.carouselSettings.keyboard;
+    this.config.pauseOnHover = this.carouselService.carouselSettings.pauseOnHover;
   }
 
   // onChangePauseOnHover() {

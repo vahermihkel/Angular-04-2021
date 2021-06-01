@@ -21,6 +21,7 @@ import { ViewComponent } from './home/view/view.component';
 import { ItemPricePipe } from './pipes/item-price.pipe';
 import { ShortenTitlePipe } from './pipes/shorten-title.pipe';
 import { CarouselSettingsComponent } from './admin/carousel-settings/carousel-settings.component';
+import { CategoryComponent } from './admin/category/category.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { CarouselSettingsComponent } from './admin/carousel-settings/carousel-se
     ViewComponent,
     ItemPricePipe,
     ShortenTitlePipe,
-    CarouselSettingsComponent
+    CarouselSettingsComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,
