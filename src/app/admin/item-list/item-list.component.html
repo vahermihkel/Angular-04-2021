@@ -1,11 +1,17 @@
 <button routerLink="/admin">MINE TAGASI</button>
 
+<br><br>
+
+<button (click)="onSaveItemsToDatabase()">SALVESTA ESEMED ANDMEBAASI</button>
+
+<br>
+
 <div *ngFor="let item of items; let i = index">
-    <div>{{ item.title }}</div>
-    <div>{{ item.price | itemPrice }}</div>
-    <button (click)="onDeleteItem(i)">X</button>
-    <button routerLink="/admin/muuda-ese/{{i}}">Muuda toodet</button>
-    <br>
+  <div>{{ item.title }}</div>
+  <div>{{ item.price | itemPrice }}</div>
+  <button (click)="onDeleteItem(i)">X</button>
+  <button routerLink="/admin/muuda-ese/{{ i }}">Muuda toodet</button>
+  <br />
 </div>
 
 <!-- 

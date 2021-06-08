@@ -47,7 +47,12 @@ export class ItemEditComponent implements OnInit {
     if (form.valid) {
       // this.itemService.items.push(form.value);
       this.itemService.items[this.id] = form.value;
-      this.router.navigateByUrl("/admin/esemete-list");
+      this.itemService.saveItemsToDatabase().subscribe(() => {
+        console.log("ese muudetud ja andmebaasis");
+        this.router.navigateByUrl("/admin/esemete-list");
+        console.log("url muudetud");
+      });
+      // subscribe sisu tehakse alles siis kui päring on tehtud
     }
   }
 

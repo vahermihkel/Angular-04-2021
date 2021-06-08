@@ -56,7 +56,22 @@ export class HomeComponent implements OnInit {
     // componenti ja ilmub HTML ehk siis läheb
     // ngOnInit() käima
     this.images = this.carouselService.images;
-    this.items = this.itemService.items;
+    // this.items = this.itemService.items;
+    this.itemService.getItemsFromDatabase().subscribe(itemsFromDb => {
+      this.itemService.items = [];
+      for (const key in itemsFromDb) {
+        this.items.push(itemsFromDb[key]);
+        this.itemService.items.push(itemsFromDb[key]);
+      }
+      // this.items = itemsFromDb;
+      // this.itemService.items = itemsFromDb;
+      console.log("esemed võetud");
+      // this.items'ga tahan ngOnInit sees midagi teha, siis pean tegema subscribe sees,
+      // kuna this.items täidetakse andmebaasist võttes, mis võtab veidi aega
+      // subscribe on asünkroone, kood läheb edasi, subscribe sisu tehakse siis,
+      // kui funktsioon on tehtud (praegusel juhul andmebaasist esemed võetud)
+    });
+    console.log("siin hakkan nende esemetega midagi tegema, siis saab errori");
     this.config.interval = this.carouselService.carouselSettings.interval;
     this.config.wrap = this.carouselService.carouselSettings.wrap;
     this.config.keyboard = this.carouselService.carouselSettings.keyboard;
