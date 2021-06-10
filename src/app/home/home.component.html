@@ -48,6 +48,11 @@
 <!-- seob ära muutujaga typescriptis -->
 <!-- väärtus liigub otse inputist muutj -->
 
+
+
+<div *ngFor="let category of items | uniqueCategory">{{ category }}</div>
+
+
 <div *ngIf="items.length != 0">{{'ESEMEID EI OLE!' | titlecase}}</div>
 
 <div *ngFor="let item of items; let i = index">

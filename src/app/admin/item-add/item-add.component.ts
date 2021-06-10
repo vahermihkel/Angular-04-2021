@@ -15,7 +15,14 @@ export class ItemAddComponent implements OnInit {
     private categoryService: CategoryService) { }
 
   ngOnInit(): void {
-    this.categories = this.categoryService.categories;
+    // this.categories = this.categoryService.categories;
+    this.categoryService.getCategories().subscribe(categoriesFromDb => {
+      this.categoryService.categories = [];
+      for (const key in categoriesFromDb) {
+        this.categories.push(categoriesFromDb[key].category);
+        this.categoryService.categories.push({ id: key, category: categoriesFromDb[key].category });
+      }
+    });
   }
 
   onSubmit(form: NgForm) {

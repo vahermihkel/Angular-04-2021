@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ItemService } from 'src/app/services/item.service';
+import { CategoryService } from '../category/category.service';
 
 @Component({
   selector: 'app-item-edit',
@@ -11,6 +12,7 @@ import { ItemService } from 'src/app/services/item.service';
 export class ItemEditComponent implements OnInit {
   editItemForm!: FormGroup;
   id: number = 0;
+  categories: string[] = [];
   // siin üleval on klassi muutujad 
   // (vastand sellele on lokaalsed muutujad, mis on 
   // funktsioonide sees "let" algusega)
@@ -24,9 +26,18 @@ export class ItemEditComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private itemService: ItemService,
-    private router: Router) { }
+    private router: Router,
+    private categoryService: CategoryService) { }
 
   ngOnInit(): void {
+    this.categoryService.getCategories().subscribe(categoriesFromDb => {
+      this.categoryService.categories = [];
+      for (const key in categoriesFromDb) {
+        this.categories.push(categoriesFromDb[key].category);
+        this.categoryService.categories.push({ id: key, category: categoriesFromDb[key].category });
+      }
+    });
+
     this.id = Number(this.route.snapshot.paramMap.get("itemId"));
     let item = this.itemService.items[this.id];
 

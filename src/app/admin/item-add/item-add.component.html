@@ -9,7 +9,8 @@
     <input type="number" ngModel name="price" placeholder="Sisesta hind" required><br>
     <label>Kategooria</label><br>
     <!-- <input type="text" ngModel name="category" pattern="^[a-zA-Z]+$" placeholder="Sisesta kategooria" required><br> -->
-    <select ngModel name="category">
+    <select ngModel name="category" required>
+        <option value="" disabled selected>Vali kategooria</option>
         <option *ngFor="let category of categories" value="{{ category }}">{{ category }}</option>
     </select>
     <br>
