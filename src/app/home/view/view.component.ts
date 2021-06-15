@@ -26,7 +26,13 @@ export class ViewComponent implements OnInit {
     if (id) {
       // castimine numbriks - URList saadakse string ehk
       // sõnaline muutuja
-      this.item = this.itemService.items[Number(id)];
+
+      //this.item = this.itemService.items[Number(id)];
+      let item = this.itemService.items.find(item => item.id == Number(id));
+      if (item) {
+        this.item = item;
+      }
+
       // massiivist saan konkreetse ID'ga ehk indeksiga väärtuse kätte
       // kui küsin sellelt massiivilt kandiliste sulgude kaudu:
       // massiiv[0] tähendab esimene väärtus sellest massiivist

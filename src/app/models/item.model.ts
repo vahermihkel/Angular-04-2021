@@ -4,6 +4,7 @@ export class Item {
         public price: number,
         public imgSrc: string,
         public category: string,
+        public id: number
     ) { }
 }
 

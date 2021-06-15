@@ -7,6 +7,10 @@
     <input type="text" ngModel name="title" placeholder="Sisesta nimetus" required><br>
     <label>Hind</label><br>
     <input type="number" ngModel name="price" placeholder="Sisesta hind" required><br>
+    <label>ID</label><br>
+    <input type="text" pattern="^[0-9]+$" minlength="8" maxlength="8" ngModel name="id" placeholder="Sisesta id" required><br>
+   
+    
     <label>Kategooria</label><br>
     <!-- <input type="text" ngModel name="category" pattern="^[a-zA-Z]+$" placeholder="Sisesta kategooria" required><br> -->
     <select ngModel name="category" required>

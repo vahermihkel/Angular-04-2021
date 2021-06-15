@@ -6,11 +6,11 @@
 
 <br>
 
-<div *ngFor="let item of items; let i = index">
+<div *ngFor="let item of items">
   <div>{{ item.title }}</div>
   <div>{{ item.price | itemPrice }}</div>
-  <button (click)="onDeleteItem(i)">X</button>
-  <button routerLink="/admin/muuda-ese/{{ i }}">Muuda toodet</button>
+  <button (click)="onDeleteItem(item.id)">X</button>
+  <button routerLink="/admin/muuda-ese/{{ item.id }}">Muuda toodet</button>
   <br />
 </div>
 

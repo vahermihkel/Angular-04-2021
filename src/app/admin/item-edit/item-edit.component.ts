@@ -39,14 +39,18 @@ export class ItemEditComponent implements OnInit {
     });
 
     this.id = Number(this.route.snapshot.paramMap.get("itemId"));
-    let item = this.itemService.items[this.id];
+    let item = this.itemService.items.find(item => item.id == this.id);
 
-    this.editItemForm = new FormGroup({
-      title: new FormControl(item.title),
-      price: new FormControl(item.price),
-      imgSrc: new FormControl(item.imgSrc),
-      category: new FormControl(item.category)
-    })
+    if (item) {
+      this.editItemForm = new FormGroup({
+        title: new FormControl(item.title),
+        price: new FormControl(item.price),
+        id: new FormControl(item.id),
+        imgSrc: new FormControl(item.imgSrc),
+        category: new FormControl(item.category)
+      })
+    }
+
   }
 
   // NgForm - Template-driven form: tavaline vorm

@@ -34,7 +34,8 @@ export class HomeComponent implements OnInit {
   // 3. kuvan teises Componendis ka välja
   // 4. küsin teises Componendis mitu pilti mul on
 
-  items: Item[] = [];
+  itemsOriginal: Item[] = [];
+  itemsShown: Item[] = [];
   pauseOnHover = false;
   // kuupaev = new Date();
   // arv = 0.5;
@@ -60,9 +61,11 @@ export class HomeComponent implements OnInit {
     this.itemService.getItemsFromDatabase().subscribe(itemsFromDb => {
       this.itemService.items = [];
       for (const key in itemsFromDb) {
-        this.items.push(itemsFromDb[key]);
+        //     this.items.push(itemsFromDb[key]);
         this.itemService.items.push(itemsFromDb[key]);
       }
+      this.itemsOriginal = this.itemService.items;
+      this.itemsShown = this.itemsOriginal;
       // this.items = itemsFromDb;
       // this.itemService.items = itemsFromDb;
       console.log("esemed võetud");
@@ -76,6 +79,19 @@ export class HomeComponent implements OnInit {
     this.config.wrap = this.carouselService.carouselSettings.wrap;
     this.config.keyboard = this.carouselService.carouselSettings.keyboard;
     this.config.pauseOnHover = this.carouselService.carouselSettings.pauseOnHover;
+  }
+
+  // "0"==0  true
+  // "0"===0 false
+  // "true"==true     true
+  // "true"===true     false
+
+  onCategorySelected(category: string) {
+    this.itemsShown = this.itemsOriginal.filter(item => item.category === category)
+
+    // .filter((item,index,array)=>{})
+    // .filter(item=>{})
+    // .filter(()=>{})
   }
 
   // onChangePauseOnHover() {

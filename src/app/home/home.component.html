@@ -50,13 +50,13 @@
 
 
 
-<div *ngFor="let category of items | uniqueCategory">{{ category }}</div>
+<span *ngFor="let category of itemsOriginal | uniqueCategory" (click)="onCategorySelected(category)">{{ category }} <br> </span>
 
 
-<div *ngIf="items.length != 0">{{'ESEMEID EI OLE!' | titlecase}}</div>
+<div *ngIf="itemsShown.length == 0">{{'ESEMEID EI OLE!' | titlecase}}</div>
 
-<div *ngFor="let item of items; let i = index">
-   <img class="item-picture" routerLink="toode/{{i}}" src="{{ item.imgSrc }}">
+<div *ngFor="let item of itemsShown">
+   <img class="item-picture" routerLink="toode/{{item.id}}" src="{{ item.imgSrc }}">
    <div class="item-title">{{ item.title | shortenTitle }}</div> 
    <div class="item-price">{{ item.price | itemPrice }}</div> 
    <button class="btn btn-danger" (click)="onAddToCart(item)">{{'Lisa ostukorvi' | uppercase}}</button>

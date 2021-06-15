@@ -28,7 +28,8 @@ export class ItemListComponent implements OnInit {
     });
   }
 
-  onDeleteItem(i: any) {
+  onDeleteItem(id: number) {
+    let i = this.itemService.items.findIndex(item => item.id == id);
     this.items.splice(i, 1);
     this.itemService.items.splice(i, 1);
     this.onSaveItemsToDatabase();

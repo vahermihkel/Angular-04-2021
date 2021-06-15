@@ -13,7 +13,7 @@ export class CarouselService {
   ];
 
   carouselSettings = {
-    interval: 1000,
+    interval: 10000,
     wrap: true,
     keyboard: false,
     pauseOnHover: false
