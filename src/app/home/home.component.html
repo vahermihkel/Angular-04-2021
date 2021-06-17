@@ -49,9 +49,14 @@
 <!-- väärtus liigub otse inputist muutj -->
 
 
-
+<span (click)="onCategorySelected('all')">Kõik kategooriad</span><br>
 <span *ngFor="let category of itemsOriginal | uniqueCategory" (click)="onCategorySelected(category)">{{ category }} <br> </span>
 
+<br>
+  <span>Järjesta:</span>
+  <button (click)="onSortByTitle()">Tähestiku järgi</button>
+  <button (click)="onSortByPrice()">Hinna järgi</button>
+<br><br>
 
 <div *ngIf="itemsShown.length == 0">{{'ESEMEID EI OLE!' | titlecase}}</div>
 

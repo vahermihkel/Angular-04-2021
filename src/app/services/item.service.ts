@@ -14,7 +14,7 @@ export class ItemService {
   url = "https://webshop-04-2021-default-rtdb.europe-west1.firebasedatabase.app/items.json";
 
   saveItemsToDatabase() {
-    // this.items = this.items.map(item => ({ ...item, id: Math.floor(Math.random() * (9 - 1) + 1) }))
+    // this.items = this.items.map(item => ({ ...item, id: Math.floor(Math.random() * (9 - 1) + 1), country: "EE", ribakood: 123456 }))
     // Math.random -- 0.0000000000001
     // Math.random -- 0.99999999999
     

@@ -40,6 +40,8 @@ export class HomeComponent implements OnInit {
   // kuupaev = new Date();
   // arv = 0.5;
   // suurarv = 5000000;
+  titleSortAsc = true;
+  priceSortAsc = true;
 
   constructor(private cartService: CartService,
     private itemService: ItemService,
@@ -87,7 +89,16 @@ export class HomeComponent implements OnInit {
   // "true"===true     false
 
   onCategorySelected(category: string) {
-    this.itemsShown = this.itemsOriginal.filter(item => item.category === category)
+    if (category == 'all') {
+      this.itemsShown = this.itemsOriginal;
+    } else {
+      // filter on justkui for tsükkel (käib nii kaua kuni on tema sees elemente)
+      // iga kord muutub noolfunktsiooni ees olev muutuja ja läheb käima noolfunktsiooni
+      // järel olev funktsioon
+      this.itemsShown = this.itemsOriginal.filter(item => item.category === category);
+
+      //this.itemsOriginal.filter(function(item){item.category === category})
+    }
 
     // .filter((item,index,array)=>{})
     // .filter(item=>{})
@@ -98,6 +109,31 @@ export class HomeComponent implements OnInit {
   //   this.pauseOnHover = !this.pauseOnHover;
   //   console.log(this.pauseOnHover);
   // }
+
+
+  onSortByTitle() {
+    if (this.titleSortAsc) {
+      this.itemsShown.sort((currentItem, nextItem) =>
+        currentItem.title.localeCompare(nextItem.title));
+      this.titleSortAsc = false;
+    } else {
+      this.itemsShown.sort((currentItem, nextItem) =>
+        nextItem.title.localeCompare(currentItem.title));
+      this.titleSortAsc = true;
+    }
+  }
+
+  onSortByPrice() {
+    if (this.priceSortAsc) {
+      this.itemsShown.sort((currentItem, nextItem) =>
+        currentItem.price - nextItem.price);
+      this.priceSortAsc = false;
+    } else {
+      this.itemsShown.sort((currentItem, nextItem) =>
+        nextItem.price - currentItem.price);
+      this.priceSortAsc = true;
+    }
+  }
 
   onAddToCart(item: any) {
     // this.items = [];

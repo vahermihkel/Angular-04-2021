@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Item } from 'src/app/models/item.model';
 import { ItemService } from 'src/app/services/item.service';
 import { CategoryService } from '../category/category.service';
 
@@ -11,7 +12,7 @@ import { CategoryService } from '../category/category.service';
 })
 export class ItemEditComponent implements OnInit {
   editItemForm!: FormGroup;
-  id: number = 0;
+  item!: Item;
   categories: string[] = [];
   // siin üleval on klassi muutujad 
   // (vastand sellele on lokaalsed muutujad, mis on 
@@ -38,18 +39,27 @@ export class ItemEditComponent implements OnInit {
       }
     });
 
-    this.id = Number(this.route.snapshot.paramMap.get("itemId"));
-    let item = this.itemService.items.find(item => item.id == this.id);
+    this.itemService.getItemsFromDatabase().subscribe(itemsFromDb => {
+      this.itemService.items = [];
+      for (const key in itemsFromDb) {
+        this.itemService.items.push(itemsFromDb[key]);
+      }
 
-    if (item) {
-      this.editItemForm = new FormGroup({
-        title: new FormControl(item.title),
-        price: new FormControl(item.price),
-        id: new FormControl(item.id),
-        imgSrc: new FormControl(item.imgSrc),
-        category: new FormControl(item.category)
-      })
-    }
+      let id = Number(this.route.snapshot.paramMap.get("itemId"));
+      let item = this.itemService.items.find(item => item.id == id);
+
+      if (item) {
+        this.item = item;
+        this.editItemForm = new FormGroup({
+          title: new FormControl(this.item.title),
+          price: new FormControl(this.item.price),
+          id: new FormControl(this.item.id),
+          imgSrc: new FormControl(this.item.imgSrc),
+          category: new FormControl(this.item.category)
+        })
+      }
+
+    });
 
   }
 
@@ -61,7 +71,8 @@ export class ItemEditComponent implements OnInit {
     console.log(form.value);
     if (form.valid) {
       // this.itemService.items.push(form.value);
-      this.itemService.items[this.id] = form.value;
+      let index = this.itemService.items.findIndex(item => item.id == this.item.id);
+      this.itemService.items[index] = form.value;
       this.itemService.saveItemsToDatabase().subscribe(() => {
         console.log("ese muudetud ja andmebaasis");
         this.router.navigateByUrl("/admin/esemete-list");
