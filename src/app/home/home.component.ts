@@ -42,6 +42,7 @@ export class HomeComponent implements OnInit {
   // suurarv = 5000000;
   titleSortAsc = true;
   priceSortAsc = true;
+  categorySelected = 'all';
 
   constructor(private cartService: CartService,
     private itemService: ItemService,
@@ -90,11 +91,13 @@ export class HomeComponent implements OnInit {
 
   onCategorySelected(category: string) {
     if (category == 'all') {
+      this.categorySelected = 'all';
       this.itemsShown = this.itemsOriginal;
     } else {
       // filter on justkui for tsükkel (käib nii kaua kuni on tema sees elemente)
       // iga kord muutub noolfunktsiooni ees olev muutuja ja läheb käima noolfunktsiooni
       // järel olev funktsioon
+      this.categorySelected = category;
       this.itemsShown = this.itemsOriginal.filter(item => item.category === category);
 
       //this.itemsOriginal.filter(function(item){item.category === category})

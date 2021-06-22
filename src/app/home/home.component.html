@@ -1,33 +1,4 @@
-<!-- {{ kuupaev | date }} <br>
-{{ kuupaev | date:"fullDate" }} <br>
-{{ kuupaev | date:"shortDate" }} <br>
-{{ kuupaev | date:"mediumTime" }} <br>
-{{ kuupaev | date:"shortTime" }} <br>
-
-{{ arv | percent }} <br>
-{{ suurarv | percent }} <br>
-
-{{ arv | currency }} <br>
-{{ suurarv | currency }} <br> -->
-
-<ngb-carousel *ngIf="images">
-  <!-- list --- muutuja, mis peab olema massiiv ehk [,,,]
-      ning see peab olema identsel kujul sama componendi .ts failis olemas
-    
-      Kui seda ei ole identsel kujul .ts failis, siis on järgnev error:
-      TS2339: Property 'list' does not exist on type 'HomeComponent'
-    -->
-
-  <!-- item --- muutuja, mille sisse läheb järjest väärtused massiivi sees
-      ["üks", true, 123, {id: 3, name: "Cod"}]
-    1. item="üks" 2. item=true 3. item=123 4. item={id: 3, name: "Cod"} -->
-
-  <!-- massiivi korrutatakse täpselt nii mitu korda kui palju on komaga
-    eraldatud elemente. ülalpoolsel näitel korrutatakse 4 korda -->
-
-  <!-- 4 korda ilmub see tag htmls koos kogu oma sisuga kus *ngFor on kirjutatud -->
-
-  <!-- <div *ngFor="let item of list"></div> -->
+<ngb-carousel class="carousel-wrapper" *ngIf="images">
    <ng-template *ngFor="let image of images" ngbSlide>
      <div class="picsum-img-wrapper">
        <img src="{{image.url}}" alt="{{image.alt}}">
@@ -39,32 +10,33 @@
    </ng-template>
  </ngb-carousel>
 
-<!-- <br>
-<label>Hiire peal paus</label>
-<input [(ngModel)]="pauseOnHover" type="checkbox">
-<br><br> -->
-<!-- two-way binding -->
-<!-- korraga loeb ja saadab väärtust -->
-<!-- seob ära muutujaga typescriptis -->
-<!-- väärtus liigub otse inputist muutj -->
-
-
-<span (click)="onCategorySelected('all')">Kõik kategooriad</span><br>
-<span *ngFor="let category of itemsOriginal | uniqueCategory" (click)="onCategorySelected(category)">{{ category }} <br> </span>
+<span (click)="onCategorySelected('all')" [ngClass]="{'category-selected': categorySelected == 'all'}">
+  Kõik kategooriad
+</span>
+<br>
+<span 
+  *ngFor="let category of itemsOriginal | uniqueCategory"
+  [ngClass]="{'category-selected': categorySelected == category}" 
+  (click)="onCategorySelected(category)">{{ category }} <br> 
+</span>
 
 <br>
-  <span>Järjesta:</span>
-  <button (click)="onSortByTitle()">Tähestiku järgi</button>
-  <button (click)="onSortByPrice()">Hinna järgi</button>
+  <div class="filter-bar">
+    <div>Järjesta:</div>
+    <div class="filter-value" (click)="onSortByTitle()">Tähestiku järgi</div>
+    <div class="filter-value" (click)="onSortByPrice()">Hinna järgi</div>
+  </div>
 <br><br>
 
 <div *ngIf="itemsShown.length == 0">{{'ESEMEID EI OLE!' | titlecase}}</div>
-
-<div *ngFor="let item of itemsShown">
-   <img class="item-picture" routerLink="toode/{{item.id}}" src="{{ item.imgSrc }}">
-   <div class="item-title">{{ item.title | shortenTitle }}</div> 
-   <div class="item-price">{{ item.price | itemPrice }}</div> 
-   <button class="btn btn-danger" (click)="onAddToCart(item)">{{'Lisa ostukorvi' | uppercase}}</button>
-   <!-- (sündmus)  event binding -- sündmuse sidumine  -->
+<div class="items-wrapper">
+  <div class="item" *ngFor="let item of itemsShown">
+    <img class="item-picture" routerLink="toode/{{item.id}}" src="{{ item.imgSrc }}">
+    <div class="add-to-cart-btn-wrapper">
+      <div class="add-to-cart-btn" (click)="onAddToCart(item)">{{'Lisa ostukorvi' | uppercase}}</div>
+    </div>
+    <div class="item-title">{{ item.title | shortenTitle }}</div> 
+    <div class="item-price">{{ item.price | itemPrice }}</div> 
+  </div>
 </div>
 

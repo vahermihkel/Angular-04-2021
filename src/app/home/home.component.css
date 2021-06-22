@@ -1,0 +1,97 @@
+.category-selected {
+    font-weight: 600;
+    font-size: 18px;
+    text-decoration: underline; 
+}
+
+.carousel-wrapper {
+    width: 80%;
+    margin: 5% 10%;
+}
+
+.picsum-img-wrapper img {
+    width: 100%;
+    height: 200px;
+}
+
+.filter-bar {
+    display: flex;
+    align-items: center;
+    background-color: #f2f2f2;
+    height: 40px;
+    margin: 10px;
+    padding-left: 10px;
+}
+
+.filter-value { 
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.items-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+}
+
+.item {
+    width: 100%;
+    height: 270px;
+    border: 1px solid gray;
+    padding-bottom: 20px;
+}
+
+.item-picture {
+    width: 100%;
+    height: 130px;  
+}
+
+.item-title {
+    height: 70px;
+}
+
+.item-price {
+    text-align: center;
+    background-color: #f2f2f2;
+    border-radius: 10px 0 10px 10px;
+    padding: 7px;
+    min-height: 30px;
+    width: 110px;    
+}
+
+.add-to-cart-btn-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+/* 3 keskele saamise viisi
+- margin: auto
+- wrapper tekitada ja selle sisse-- text-align: center
+- wrapper tekitada ja selle sisse-- display: flex; justify-content: center;
+*/
+
+.add-to-cart-btn {
+    position: absolute;
+    background-color: white;
+    margin-top: -40px;
+    visibility: hidden;
+    box-shadow: 0 0 10px 0 lightgrey;
+    border-radius: 30px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.item:hover .add-to-cart-btn {
+    visibility: visible;
+}
+
+/* margin lükkab endast eemale
+margin-left -- lükkab vasakult
+margin-right -- lükkab paremalt
+margin-top -- lükkab ülalt
+margin-bottom -- lükkab alt
+margin: 5% -- lükkab igas suunas
+margin: 12px 5% -- alla ja üles lükkab 12px,
+vasakule-paremale lükkab 5%
+margin: 20px 50px 10% 2px;
+    kellasuunas alates ülalt
+*/
